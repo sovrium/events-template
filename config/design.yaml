@@ -7,7 +7,7 @@
 # the CRM's indigo that nobody mistakes the two for one product with two skins.
 #
 # WHY THESE KEY NAMES AND NOT PRETTIER ONES
-#   `theme.colors` accepts any kebab-case key, but only the keys in
+#   `design.colors` accepts any kebab-case key, but only the keys in
 #   `COLOR_TO_SV_TOKEN` (src/infrastructure/css/theme/theme-generators.ts) emit
 #   the `--sv-*` platform tokens as well as `--color-*`. Those are the ones every
 #   prestyled island already reads, so declaring them repaints the public event
@@ -64,7 +64,7 @@ colors:
 
 # Emitted into the stylesheet unconditionally under
 # `html:is(.dark, [data-theme='dark'])`; it renders once the app declares
-# `theme.colorScheme` or ships a `theme-toggle`, neither of which this template
+# `design.colorScheme` or ships a `theme-toggle`, neither of which this template
 # does yet. `primary-foreground` is deliberately NOT declared in either block:
 # the light path derives `#ffffff` for text on the fill, and the dark path
 # inherits the platform's dark companion, which is the dark neutral a pale pink
@@ -85,7 +85,7 @@ darkColors:
   warning: '#fbbf24'
   error: '#fb7185'
 
-borderRadius:
+radius:
   sm: 0.25rem
   md: 0.5rem
   lg: 0.75rem
