@@ -1,8 +1,13 @@
-# The confirmation with no event named — what `/thanks` shows when the link
-# carries no event. A registration lands on `/thanks/<event>` instead
-# (thanks-event.yaml), which names it.
-name: thanks
-path: /thanks
+# Where a registration lands: `/thanks/<event>`. The page is bound to that one
+# event, so it names it, with its date and its place. The registration form
+# puts the event the visitor chose into the address; nothing of the attendee
+# travels in it.
+name: thanks-event
+path: /thanks/:id
+dataSource:
+  table: events
+  mode: single
+  param: id
 meta:
   title: You are registered · Fieldday
   description: Your registration is confirmed. A confirmation is on its way to your inbox.
@@ -26,12 +31,12 @@ components:
             element: h1
             props:
               className: text-[30px] font-semibold leading-tight tracking-tight text-foreground max-md:text-2xl
-            content: You are registered
+            content: You are registered for $record.name
           - type: text
             element: p
             props:
               className: text-base text-foreground-muted
-            content: A confirmation with the date and the place is on its way to your inbox.
+            content: $record.when_label, at $record.place. A confirmation is on its way to your inbox.
           - type: container
             children:
               - type: link

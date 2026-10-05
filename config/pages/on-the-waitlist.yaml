@@ -1,11 +1,15 @@
-# The confirmation with no event named — what `/thanks` shows when the link
-# carries no event. A registration lands on `/thanks/<event>` instead
-# (thanks-event.yaml), which names it.
-name: thanks
-path: /thanks
+# Where a place on the waitlist lands: `/on-the-waitlist/<event>`, bound to
+# that one event so it names it. Nothing of the attendee travels in the
+# address.
+name: on-the-waitlist
+path: /on-the-waitlist/:id
+dataSource:
+  table: events
+  mode: single
+  param: id
 meta:
-  title: You are registered · Fieldday
-  description: Your registration is confirmed. A confirmation is on its way to your inbox.
+  title: On the waitlist · Fieldday
+  description: You are on the waitlist. We email you if a seat frees up.
 components:
   - type: container
     props:
@@ -19,19 +23,19 @@ components:
         children:
           - type: icon
             props:
-              name: circle-check
+              name: clock
               size: 28
-              className: text-success
+              className: text-warning
           - type: text
             element: h1
             props:
               className: text-[30px] font-semibold leading-tight tracking-tight text-foreground max-md:text-2xl
-            content: You are registered
+            content: You are on the waitlist for $record.name
           - type: text
             element: p
             props:
               className: text-base text-foreground-muted
-            content: A confirmation with the date and the place is on its way to your inbox.
+            content: $record.when_label, at $record.place. If a seat frees up, we email you and hold it for a day.
           - type: container
             children:
               - type: link
